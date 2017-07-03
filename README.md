@@ -1,1 +1,3 @@
 # DigitGrids
+
+Generate digit randomly.
