@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <style type="text/css">
+        body {
+
+            display: grid;
+            border: 1px solid #000000;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto auto auto;
+            background-color: #000000;
+            
+        }
+		.bg {background-color: #FFFFFF; width: 70%; height: 70%; display: flex; margin: auto; text-align:center;}
+        img {
+	    margin: auto;
+            height: 100%;
+            width: 100%;
+
+        }
+    </style>
+
+    <script type="text/javascript">
+        var raw_text;
+        var width;
+        var height;
+	var int = self.setInterval("set_grids()", 1500);
+        function set_params() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            if (height / width > 9 / 16) {
+                height = width * 9 / 16;
+            } else {
+                width = height * 16 / 9;
+            }
+            set_grids();
+        }
+        function set_grids() {
+            var item_index = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+            var random_img_index = Math.floor(999 * Math.random());
+            var img_index_str = new Array(6 - random_img_index.toString().length).join("0").toString() + random_img_index.toString();
+            //alert(img_index_str);
+            var innerHTML = '';
+            var body = document.getElementsByTagName("body").item(0);
+            
+            for (var i = 0; i < 3; ++i) {
+                for (var j = 0; j < 3; ++j) {
+                    var selected_index = Math.floor(item_index.length * Math.random());
+                    var num = item_index[selected_index];
+                    innerHTML += "<div class='bg'><img src='" + num.toString() + "/" + num.toString() + "_" + img_index_str + ".png'/></div>";
+                    item_index.splice(selected_index, 1);
+                    
+                }
+            }
+            body.innerHTML = innerHTML;
+        }
+    </script>
+</head>
+
+<body onload="set_params()" onresize="set_params()" onclick="set_grids()">
+
+</body>
+
+</html>
